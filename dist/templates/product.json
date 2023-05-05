@@ -1,0 +1,32 @@
+{
+  "sections": {
+    "main-product-grid": {
+      "type": "main-product-grid",
+      "blocks":{
+        "title":{
+          "settings":{}
+        },
+        "sku":{
+          "settings":{}
+        },
+        "price":{
+          "settings":{
+            
+          }
+        },
+        "form":{
+          "settings":{}
+        }
+      },
+      "block_order":[
+        "title",
+        "sku",
+        "price",
+        "form"
+      ]
+    }
+  },
+  "order": [
+    "main-product-grid"
+  ]
+}

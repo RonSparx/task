@@ -1,0 +1,108 @@
+.main-product-grid-content{
+    display:flex;
+    flex-wrap:wrap;
+}
+.main-product-grid-content .product-media-gallery{
+    flex:0 0 60%;
+    max-width:60%;
+    overflow:hidden;
+}
+.product-info-content{
+    flex:0 0 40%;
+    max-width:40%;
+    padding:30px 30px 0px 30px;
+}
+.product_comp,.product-option-block{
+    margin-bottom:16px;
+}
+.product-option-block{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+.product-option-block .option-title{
+    flex:0 0 100%;
+}
+.option-title{
+    margin-bottom:8px;
+    font-size:18px;
+}
+.product-option-block input{
+    display:none;
+    gap:6px;
+}
+.product-option-block input:checked + label{
+    background-color:var(--primary-button-bg);
+    color:var(--primary-button-color)
+}
+.product-option-block label{
+    font-size:14px;
+    background-color:transparent;
+    flex: 0 0 25%;
+    max-width:25%;
+    border:solid 1px #aeaeae;
+    text-align: center;
+    padding:6px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.product-form .add-to-cart-btn{
+    width:100%;
+    margin-top:10px;
+}
+.product-form .add-to-cart-btn.soldOut{
+    opacity: 0.7;
+    cursor: no-drop;
+}
+.quantity-wrapper{
+    display: flex;
+    align-items: center;
+    gap:2px;
+    border: solid 1px #aeaeae;
+    width: max-content;
+    padding: 10px;
+    border-radius: 6px;
+}
+.quantity-wrapper input{
+    max-width:50px;
+    text-align: center;
+    border: none;
+    font-size:16px;
+}
+.quantity-wrapper .quantity-btn svg{
+    width:20px;
+    height:auto;
+}
+.quantity-wrapper .quantity-btn{
+    background-color: transparent;
+    border: none;
+    font-size:20px;
+    font-weight:800;
+    line-height:0px;
+    cursor: pointer;
+}
+.product-media-gallery-wrapper{
+    margin-bottom:20px;
+}
+.product_comp summary{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+}
+.product_comp details[open] summary svg{
+    transform: rotate(90deg);
+}
+.product_comp summary svg{
+    width:20px;
+}
+@media(max-width:768px){
+    .main-product-grid-content .product-media-gallery,.product-info-content{
+        flex:0 0 100%;
+        max-width: 100%;
+    }
+    .product-info-content{
+        padding:30px 10px;
+    }
+}

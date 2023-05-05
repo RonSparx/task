@@ -1,0 +1,61 @@
+<div class="filter-action-buttons">
+    <button class="fillter-button" data-role="filter-display"><span>Filter</span><span>{%- render "icon-filter" -%}</span></button>
+</div>
+<div class="collection_filter" data-role="filter-wrapper">
+    <button class="filter-head" data-role="filter-display"><span>Filter</span><span>{%- render "icon-close" -%}</span></button>
+    <div class="collection_filter_wrapper">
+        {%- for filter in collection.filters -%}
+            {%- case filter.type -%}
+                {%- when 'price_range' -%}
+                    <div class="filter_block">
+                        <div class="filter_block_head">
+                            <p>{{- filter.label -}}</p>
+                        </div>
+                        <div class="filter_options price_option">
+                            <input name="{{- filter.min_value.param_name -}}" data-id="min-price" 
+                                type="hidden"
+                                data-action="filter"
+                            >
+                            <input name="{{- filter.max_value.param_name -}}" data-id="max-price"
+                                type="hidden"
+                                data-action="filter"
+                            >
+                            <div class="price_min_wrapper">
+                                <input name="{{- filter.min_value.param_name -}}" id="{{- filter.min_value.param_name -}}" 
+                                    {%- if filter.min_value.value -%}value="{{- filter.min_value.value | money_without_currency | replace : ',','' -}}"{%- endif -%}
+                                    type="number"
+                                    min="0"
+                                    max="{{- filter.range_max | money_without_currency | replace : ',','' -}}"
+                                    data-role="min-price"
+                                >
+                                <label for="{{- filter.min_value.param_name -}}">Min</label>
+                            </div>
+                            <div class="price_max_wrapper">
+                                <input name="{{- filter.max_value.param_name -}}" id="{{- filter.min_value.param_name -}}"
+                                    {%- if filter.max_value.value -%}value="{{- filter.max_value.value | money_without_currency | replace : ',','' -}}"{%- endif -%}
+                                    type="number"
+                                    min="0"
+                                    max="{{- filter.range_max | money_without_currency | replace : ',',"" -}}"
+                                    data-role="max-price"
+                                >
+                                <label for="{{- filter.min_value.param_name -}}">Max</label>
+                            </div>
+                            <button data-role="apply-price">Apply</button>
+                        </div>
+                    </div>
+                {%- when 'boolean', 'list' -%}
+                    <div class="filter_block">
+                        <div class="filter_block_head">
+                            <p>{{- filter.label -}}</p>
+                        </div>
+                        <div class="filter_options">
+                            {%- for value in filter.values -%}
+                                <input type="checkbox" value="{{- value.value -}}" name="{{- value.param_name-}}" id="{{- value.param_name -}}_{{- forloop.index -}}" {% if value.active %}checked {% endif %} data-action="filter">
+                                <label for="{{- value.param_name -}}_{{- forloop.index -}}">{{- value.label -}}</label>
+                            {%- endfor -%}
+                        </div>
+                    </div>
+            {%- endcase -%}
+        {%- endfor -%}
+    </div>
+</div>

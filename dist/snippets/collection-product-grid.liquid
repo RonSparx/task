@@ -1,0 +1,16 @@
+{%- paginate collection.products by 4 -%}
+    <div class="collection-product-grid">
+        <div class="collection-product-grid-wrapper" data-role="product-grid-wrap">
+                {%- for product in collection.products -%}
+                    {%- render "product-card",product:product -%}
+                {%- endfor -%}
+            </div>
+            {%- if paginate.next -%}
+                <a href="{{ paginate.next.url }}" data-action="loadMore" class="loadMoreBtn primary-btn">Load more</a>
+                {% else %}
+                <a href="{{ paginate.current_page.url }}" data-action="loadMore" class="loadMoreBtn primary-btn">No More Products</a>
+            {% endif %}
+            <div class="filter-overlay"></div>
+            {%- render "loader" -%}
+    </div>
+{%- endpaginate -%}

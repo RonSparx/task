@@ -1,8 +1,8 @@
 development:
   password: shptka_76e8b88454b591d1965a64bf3febe7f7
-  theme_id: "148769210642"
+  theme_id: "148772258066"
   store: ronstore1183.myshopify.com
-  directory: dist/
+  directory: dist
   ignore_files:
-    - config/settings_data.json
-    - templates/*.json
+  - config/settings_data.json
+  - templates/*.json

@@ -1,0 +1,26 @@
+{%- form "product" ,product,class:"product-form",data-role:"product-form" -%}
+    <input name="id" value="{{- loaded_variant.id-}}" type="hidden">
+    <input name="quantity" value="1" type="hidden">
+    <div class="product_options">
+        <div class="product-option-wrapper">
+            {%- for option in product.options_with_values -%}
+                <div class="product-option-block" data-option="{{- option.name -}}">
+                    <p class="option-title">{{- option.name -}}</p>
+                    {%- for value in option.values -%}
+                        <input type="radio" name="{{- option.name -}}" data-role="option" {% if option.selected_value == value %}checked{% endif %} id="{{- forloop.index -}}-{{- option.name -}}-{{- value -}}" value="{{- value -}}"/>
+                        <label for="{{- forloop.index -}}-{{- option.name -}}-{{- value -}}">{{- value -}}</label>
+                    {%- endfor -%}
+                </div>
+            {%- endfor -%}
+            <div class="quantity-wrapper">
+                <button data-role="decrement" class="quantity-btn">{% render "icon-minus" %}</button>
+                <input type="number" value="1" data-role="quantity" min="1">
+                <button data-role="increment" class="quantity-btn">{% render "icon-plus" %}</button>
+            </div>
+            <button type="submit" class="primary-button add-to-cart-btn {% unless loaded_variant.available %}soldOut{% endunless %}" data-role='addToCart'>Add to cart</button>
+        </div>
+    </div>
+    <script type="application/json" data-role="product-data">
+        {{ product.variants | json }}
+      </script>
+{%- endform -%}

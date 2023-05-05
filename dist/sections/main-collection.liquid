@@ -1,0 +1,13 @@
+{{'section.productCard.css' | asset_url | stylesheet_tag }}
+{{ 'section.collection.css' | asset_url | stylesheet_tag }}
+<div class="section_wrapper page__layout">
+    <div id="main-collection" data-id="{{- section.id -}}">
+        <div class="main-collection-wrapper">
+            <h2 class="section-title">{{ collection.title }}</h2>
+            <div class="main-collection-content-wrapper">
+                {%- render "collection-filter" -%}
+                {%- render "collection-product-grid" -%}   
+            </div>
+        </div>
+    </div>
+</div>

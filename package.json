@@ -1,7 +1,7 @@
 {
-  "name": "shopify-webpack-theme-development",
+  "name": "Task",
   "version": "1.0.0",
-  "description": "An empty starting point for modern Shopify theme development.",
+  "description": "Empty theme",
   "private": true,
   "main": "webpack.config.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "add-all": "git add ."
   },
   "keywords": [],
-  "author": "@krjo",
+  "author": "Ron",
   "license": "MIT",
   "devDependencies": {
     "@shopify/theme-cart": "^3.1.0",
@@ -34,5 +34,8 @@
   "pre-commit": [
     "build",
     "add-all"
-  ]
+  ],
+  "dependencies": {
+    "keen-slider": "^6.8.5"
+  }
 }

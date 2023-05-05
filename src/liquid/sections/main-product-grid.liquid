@@ -1,0 +1,91 @@
+{%- assign loaded_variant = product.selected_or_first_available_variant -%}
+<div id="main-product-grid" data-id="{{- section.id -}}">
+    <div class="main-product-grid-wrapper">
+        <div class="main-product-grid-content">
+            {%- render "media-gallery" ,product:product,loaded_variant:loaded_variant -%}
+            <div class="product-info-content">
+                <div class="product-info-content-wrapper">
+                    {%- for block in section.blocks -%}
+                        {%- case block.type -%}
+                            {%- when "title" -%}
+                                <div class="product_comp">
+                                    <h2 class="product_title section-heading" data-role="title">{{- product.title -}}</h2>
+                                </div>
+                            {%- when "sku" -%}
+                                {%- if loaded_variant.sku -%}
+                                    <div class="product_comp">
+                                        <p class="product_sku" data-role="sku">SKU:{{- loaded_variant.sku -}}</p>
+                                    </div>
+                                {%- endif -%}
+                            {%- when "price" -%}
+                                <div class="product_comp">
+                                    <p class="product_price section-subheading" data-role="price">
+                                        {{- loaded_variant.price | money -}}
+                                    {%- if loaded_variant.compare_at_price > loaded_variant.price and block.settings.compare_price -%}<s class="compare_price">{{- loaded_variant.price | money -}}</s>{%- endif -%}
+                                    </p>
+                                </div>
+                            {%- when "form" -%}
+                                <div class="product_comp">
+                                    {% render "product-form",product:product,loaded_variant:loaded_variant %}
+                                </div>
+                            {%- when "description" -%}
+                                <div class="product_comp">
+                                    <details open>
+                                        <summary><span>{{ block.settings.title }}</span><span>{%- render "icon-caret" -%}</span></summary>
+                                        <p>{{ product.description }}</p>
+                                      </details>
+                                </div>
+                        {%- endcase -%}
+                    {%- endfor -%}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%- schema -%}
+    {
+        "name":"Product",
+        "blocks":[
+            {
+                "type":"title",
+                "name":"Product Title",
+                "settings":[]
+            },
+            {
+                "type":"sku",
+                "name":"SKU",
+                "settings":[]
+            },
+            {
+                "type":"price",
+                "name":"Price",
+                "settings":[
+                    {
+                        "type":"checkbox",
+                        "label":"Display compare price",
+                        "id":"compare_price"
+                    }
+                ]
+            },
+            {
+                "type":"form",
+                "name":"Product form",
+                "settings":[
+                    
+                ]
+            },
+            {
+                "type":"description",
+                "name":"Description",
+                "settings":[
+                    {
+                        "type":"text",
+                        "label":"Title",
+                        "id":"title",
+                        "default":"Title"
+                    }
+                ]
+            }
+        ]
+    }
+{%- endschema -%}
