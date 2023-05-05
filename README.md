@@ -24,4 +24,3 @@
 -npm run deploy
     -completes a webpack build in production mode
     -Deploys dist folder to the development theme in config.yml
-
