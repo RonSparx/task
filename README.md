@@ -25,7 +25,3 @@
     -completes a webpack build in production mode
     -Deploys dist folder to the development theme in config.yml
 
-/////////////////////Settins up product page
--Add blocks in sopify customiser to display product info
--How product slider displays images based on the option selection
-    -In the product images add alt text with the corresponding option value
