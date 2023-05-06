@@ -17,7 +17,7 @@
                 <input type="number" value="1" data-role="quantity" min="1">
                 <button data-role="increment" class="quantity-btn">{% render "icon-plus" %}</button>
             </div>
-            <button type="submit" class="primary-button add-to-cart-btn {% unless loaded_variant.available %}soldOut{% endunless %}" data-role='addToCart'>Add to cart</button>
+            <button type="submit" class="primary-button add-to-cart-btn {% unless loaded_variant.available %}soldOut{% endunless %}" {% unless loaded_variant.available %}disabled="true"{% endunless %} data-role='addToCart'><span class="avail">Add to cart</span><span class="not-avail">Sold out</span></button>
         </div>
     </div>
     <script type="application/json" data-role="product-data">

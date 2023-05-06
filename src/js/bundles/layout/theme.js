@@ -118,6 +118,7 @@ CUSTOMJS.Product = {
         btnIncrement:"[data-role='increment']",
         quantityInput:"[data-role='quantity']",
         btnDecrement:"[data-role='decrement']",
+        variantSelector:"[data-role='variant-selector']",
     },
     //// Initialize product js
     init:function(){
@@ -137,7 +138,7 @@ CUSTOMJS.Product = {
         if(!this.productTemplate) return;
 
         this.initiateSlider();
-        Array.from(this.optionSelectors).forEach(function(el,ind){ el.addEventListener("change",this.updateVariant.bind(this))},this);
+        Array.from(this.optionSelectors).forEach(function(el,ind){ el.addEventListener("change",this.updateVariant.bind(this,el))},this);
         this.updateQuantity();
     },
     //// Initiate product slider
@@ -189,7 +190,7 @@ CUSTOMJS.Product = {
         })
     },
     //// On variants update, upadting data
-    updateVariant : function(){
+    updateVariant : function(el){
         let selectedOptions = Array.from(this.optionSelectors).filter(option => option.checked).map(option => option.value);
         this.selectedOptionData = this.productData.filter(data => data.options.length == selectedOptions.length && data.options.every(option => selectedOptions.indexOf(option) != -1))[0];
         let url = window.location.pathname + `?variant=${this.selectedOptionData.id}`;
@@ -226,12 +227,14 @@ CUSTOMJS.Product = {
         let html = parser.parseFromString(data["main-product-grid"],"text/html");
         this.productPrice ? this.productPrice.innerHTML = html.querySelector(`${this.selectors.productPrice}`).innerHTML : "";
         this.productSku ? this.productSku.innerHTML = html.querySelector(`${this.selectors.productSku}`).innerHTML : "";
-        this.selectedOptionData.available ? this.addToCartButton.classList.remove("soldOut") : this.addToCartButton.classList.add("soldOut"); 
+        this.selectedOptionData.available ? this.addToCartButton.classList.remove("soldOut")  : this.addToCartButton.classList.add("soldOut") ; 
+        !this.selectedOptionData.available ? this.addToCartButton.setAttribute("disabled","true") :  this.addToCartButton.removeAttribute("disabled"); 
         let productSlider = html.querySelector(`${this.selectors.productSlider}`);
         let thumbSlider = html.querySelector(`${this.selectors.thumbSlider}`);
         this.productSlider.innerHTML = productSlider.innerHTML;
         this.thumbSlider.innerHTML = thumbSlider.innerHTML;
         this.initiateSlider();
+        this.productSlide.update();
     }
 }
 CUSTOMJS.Collection.init();

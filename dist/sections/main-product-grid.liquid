@@ -19,7 +19,7 @@
                                 {%- endif -%}
                             {%- when "price" -%}
                                 <div class="product_comp">
-                                    <p class="product_price section-subheading" data-role="price">
+                                    <p class="product_price" data-role="price">
                                         {{- loaded_variant.price | money -}}
                                     {%- if loaded_variant.compare_at_price > loaded_variant.price and block.settings.compare_price -%}<s class="compare_price">{{- loaded_variant.price | money -}}</s>{%- endif -%}
                                     </p>

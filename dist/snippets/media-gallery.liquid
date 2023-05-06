@@ -4,20 +4,20 @@
     <div class="product-media-gallery-wrapper keen-slider" data-role="slider-gallery">
         {%- if variantMedia != blank -%}
             {%- for media in variantMedia.value -%}
-                <div class="product-media-container keen-slider__slide {% if featured_media == media %}is_active{% endif %}">
+                <div class="product-media-container keen-slider__slide {% if forloop.index == 1 %}is_active{% endif %}">
                     <div class="product-media-wrapper" style="padding-bottom:{{ 1 | divided_by: 0.8 | times: 100 }}%;position:relative;">
                         {{ media.preview_image | image_url: width: 1946 | image_tag:
                             loading: lazy,
                             sizes: sizes,
                             widths: '246, 493, 600, 713, 823, 990, 1100, 1206, 1346, 1426, 1646, 1946',
-                            style:"position:absolute;top:0px;left:0px;width:100%;height:100%;object-fit:cover;"
+                            style:"position:absolute;top:0px;left:0px;width:100%;height:100%;object-fit:contain;"
                         }}
                     </div>
                 </div>
             {%- endfor -%}
         {%- else -%}
             {% for i in (1..5) %}
-                <div class="product-media-container keen-slider__slide {% if featured_media == media %}is_active{% endif %}">
+                <div class="product-media-container keen-slider__slide {% if forloop.index == 1 %}is_active{% endif %}">
                     {{ 'product-1' | placeholder_svg_tag }}
                 </div>
             {% endfor %}
@@ -27,7 +27,7 @@
         <div class="product-media-thumbnail-wrapper keen-slider" data-role='slider-thumbnail'>
             {%- if variantMedia != blank -%}
                 {%- for media in variantMedia.value -%}
-                        <div class="product-thumbnail-wrapper keen-slider__slide {% if featured_media == media %}is_active{% endif %}" style="padding-bottom:{{ 1 | divided_by: 0.8 | times: 20 }}%;position:relative;">
+                        <div class="product-thumbnail-wrapper keen-slider__slide {% if forloop.index == 1 %}is_active{% endif %}" style="padding-bottom:{{ 1 | divided_by: 0.8 | times: 20 }}%;position:relative;">
                             {{ media.preview_image | image_url: width: 1946 | image_tag:
                                 loading: lazy,
                                 sizes: sizes,
